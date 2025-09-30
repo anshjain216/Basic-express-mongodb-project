@@ -29,6 +29,10 @@
             <form action="/chat/<%= chat._id %>/delete?_method=delete" method="post" onsubmit="return confirmDelete()">
                 <button> delete </button>
             </form>
+            &nbsp;
+              <form action="/chat/<%= chat._id %>" method="get">
+                <button> show </button>
+            </form>
             
         </div>
         <br><br>
