@@ -96,7 +96,19 @@ app.get("/chat/:id",asyncWrap(async (req, res, next) => {
 
 
 })) 
+let work = (err)=>{
+    console.log(" this is a validation error");
+    return(err);
+}
+app.use((err,req,res,next)=>{
+    console.log(err.name);
+    if(err.name==="ValidationError"){
+        let err1 = work(err);
+         next(err1);
+    }
+    next(err);
+})
 app.use((err, req, res, next) => {
-    let { status, message } = err;
+    let { status=500, message="undefined error" } = err;
     res.status(status).send(message);
 })
